@@ -2,12 +2,11 @@
 
 Dinky’s compression pipeline is available as a **local** command-line tool and an optional **loopback HTTP** server. There is still **no public cloud API**; everything runs on the Mac with explicit file paths you supply.
 
-**Source layout:** Swift package at `DinkyCoreImage/` in this repo. Library targets: `DinkyCoreShared`, `DinkyCoreImage`, `DinkyCoreVideo`, `DinkyCorePDF`, `DinkyCLILib` (CLI + JSON). Product executable: `dinky`.
+**Source layout:** Swift package at this repository's root. Library targets: `DinkyCoreShared`, `DinkyCoreImage`, `DinkyCoreVideo`, `DinkyCorePDF`, `DinkyCLILib` (CLI + JSON). Product executable: `dinky`.
 
 ## Building
 
 ```bash
-cd DinkyCoreImage
 swift build -c release
 # Binary: .build/release/dinky
 ```
@@ -233,7 +232,6 @@ Use `--json` to print the manifest to stdout after writing.
 ## Testing
 
 ```bash
-cd DinkyCoreImage
 swift test
 ```
 

@@ -19,6 +19,17 @@ A small macOS utility that compresses **images**, **videos**, and **PDFs**. Drop
 - **Apple Silicon** (M-series Mac). Current **2.x** DMG and Homebrew cask builds are not for Intel-based Macs (Finder may show the app icon with a slash through it on the wrong architecture).
 - **macOS 15** (Sequoia) or later.
 
+## Swift Package Manager
+
+The core PDF compressor can be used as a standard Swift Package dependency:
+
+```swift
+.package(url: "https://github.com/heyderekj/dinky.git", from: "2.0.0")
+```
+
+Add `DinkyCorePDF` to the target that performs local PDF processing. The same root
+package also provides Dinky's local CLI.
+
 ## Releases
 
 **1.x** (from 1.0 on) was **images only**. **2.0** added **videos and PDFs** alongside images. Older 1.x DMGs and ZIPs stay on [GitHub Releases](https://github.com/heyderekj/dinky/releases) for anyone who needs them; use the [latest release](https://github.com/heyderekj/dinky/releases/latest) for full format support.
@@ -130,7 +141,7 @@ Updating Dinky is one click — no browser, no re-drag, no quarantine step. A ba
 
 ## CLI and local image API (optional)
 
-The same compression engines as the app are shipped as a small Swift package in this repo (`DinkyCoreImage/`). Build the `dinky` binary with SwiftPM and run **`dinky compress-image`**, **`dinky compress-video`**, **`dinky compress-pdf`**, **`dinky ocr`**, **`dinky serve`** (loopback HTTP), or **`dinky make-fixtures`** (developer-only sample files for testing). See [docs/local-cli.md](docs/local-cli.md) for flags and JSON schemas.
+The same compression engines as the app are shipped as a Swift package at this repository's root. Build the `dinky` binary with SwiftPM and run **`dinky compress-image`**, **`dinky compress-video`**, **`dinky compress-pdf`**, **`dinky ocr`**, **`dinky serve`** (loopback HTTP), or **`dinky make-fixtures`** (developer-only sample files for testing). See [docs/local-cli.md](docs/local-cli.md) for flags and JSON schemas.
 
 - **Docs:** [docs/local-cli.md](docs/local-cli.md) — flags, exit codes, JSON schema (`dinky.image.compress/1.0.0`), and `serve` endpoints.
 - **Encoders** must be on disk (`DINKY_BIN`, `bin/` next to the binary, or Homebrew `cwebp` / `avifenc` / `oxipng`), matching how the app bundles them.
@@ -157,7 +168,6 @@ Delete or move any extra `Dinky.app` you do not need (for example an old one lef
 Use the optional local package in this repo:
 
 ```bash
-cd DinkyCoreImage
 swift build -c release
 ./.build/release/dinky --help
 ```

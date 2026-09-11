@@ -813,7 +813,7 @@
 /* Begin XCLocalSwiftPackageReference section */
 		DCI2000010000000000001 /* XCLocalSwiftPackageReference "DinkyCoreImage" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = DinkyCoreImage;
+			relativePath = .;
 		};
 /* End XCLocalSwiftPackageReference section */
 

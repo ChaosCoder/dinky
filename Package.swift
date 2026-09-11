@@ -18,27 +18,27 @@ let package = Package(
     targets: [
         .target(
             name: "DinkyCoreShared",
-            path: "Sources/DinkyCoreShared"
+            path: "DinkyCoreImage/Sources/DinkyCoreShared"
         ),
         .target(
             name: "DinkyCoreImage",
             dependencies: ["DinkyCoreShared"],
-            path: "Sources/DinkyCoreImage"
+            path: "DinkyCoreImage/Sources/DinkyCoreImage"
         ),
         .target(
             name: "DinkyCoreVideo",
             dependencies: ["DinkyCoreShared", "DinkyCoreImage"],
-            path: "Sources/DinkyCoreVideo"
+            path: "DinkyCoreImage/Sources/DinkyCoreVideo"
         ),
         .target(
             name: "DinkyCoreAudio",
             dependencies: ["DinkyCoreShared"],
-            path: "Sources/DinkyCoreAudio"
+            path: "DinkyCoreImage/Sources/DinkyCoreAudio"
         ),
         .target(
             name: "DinkyCorePDF",
             dependencies: ["DinkyCoreShared", "DinkyCoreImage"],
-            path: "Sources/DinkyCorePDF"
+            path: "DinkyCoreImage/Sources/DinkyCorePDF"
         ),
         .target(
             name: "DinkyCLILib",
@@ -49,17 +49,17 @@ let package = Package(
                 "DinkyCoreAudio",
                 "DinkyCorePDF",
             ],
-            path: "Sources/DinkyCLILib"
+            path: "DinkyCoreImage/Sources/DinkyCLILib"
         ),
         .executableTarget(
             name: "DinkyCLIApp",
             dependencies: ["DinkyCLILib"],
-            path: "Sources/DinkyCLIApp"
+            path: "DinkyCoreImage/Sources/DinkyCLIApp"
         ),
         .testTarget(
             name: "DinkyCLILibTests",
             dependencies: ["DinkyCLILib", "DinkyCoreImage", "DinkyCoreVideo", "DinkyCoreAudio", "DinkyCorePDF", "DinkyCoreShared"],
-            path: "Tests/DinkyCLILibTests"
+            path: "DinkyCoreImage/Tests/DinkyCLILibTests"
         ),
     ]
 )

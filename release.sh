@@ -146,11 +146,8 @@ xcodebuild \
   test \
   | grep -E "error:|TEST (SUCCEEDED|FAILED)|BUILD (SUCCEEDED|FAILED)"
 
-(
-  cd DinkyCoreImage
-  swift build -c debug
-  swift test
-)
+swift build -c debug
+swift test
 
 # ── 5. Create DMG ─────────────────────────────────────────────────────────────
 

@@ -52,7 +52,7 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             test
 
-  # Swift package: `dinky` CLI + DinkyCoreImage engine (local SPM, not bundled in the .app target).
+  # Swift package: `dinky` CLI + DinkyCoreImage engine (root SPM package, not bundled in the .app target).
   spm:
     runs-on: macos-26
     steps:
@@ -83,10 +83,9 @@ jobs:
           ln -sf "$(brew --prefix libavif)/bin/avifenc" "$BIN/avifenc"
           ln -sf "$(brew --prefix oxipng)/bin/oxipng" "$BIN/oxipng"
           echo "DINKY_BIN=$BIN" >> "$GITHUB_ENV"
-      - name: Swift build and test (DinkyCoreImage)
+      - name: Swift build and test
         if: steps.paths.outputs.skip != 'true'
         run: |
           set -eo pipefail
-          cd DinkyCoreImage
           swift build -c debug
           swift test
