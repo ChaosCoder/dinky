@@ -254,9 +254,12 @@ public enum PDFCompressor: Sendable {
             CGImageDestinationAddImage(dest, cgImage, opts as CFDictionary)
             guard CGImageDestinationFinalize(dest) else { continue }
 
-            guard let nsImage = NSImage(data: jpegData as Data),
-                  let renderedPage = PDFPage(image: nsImage) else { continue }
-            renderedPage.setBounds(bounds, for: .mediaBox)
+            guard let nsImage = NSImage(data: jpegData as Data) else { continue }
+            // PDFPage(image:) uses the NSImage point size as its page content size.
+            // JPEG pixels default to 72 DPI, which would otherwise crop higher-DPI
+            // raster pages when the original media box is smaller than their pixel size.
+            nsImage.size = bounds.size
+            guard let renderedPage = PDFPage(image: nsImage) else { continue }
             output.insert(renderedPage, at: output.pageCount)
             progress?(0.1 + 0.78 * Float(i + 1) / Float(pageCount))
         }
